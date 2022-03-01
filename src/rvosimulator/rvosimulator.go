@@ -129,6 +129,18 @@ func (rvo *RVOSimulator) RemoveAgent(agentNo int) bool {
 	return false
 }
 
+// RemoveAgentByID : Remove agent by agent ID
+func (rvo *RVOSimulator) RemoveAgentByID(agentID int) bool {
+	for i, agent := range rvo.Agents {
+		if agent.ID == agentID {
+			rvo.Agents = append(rvo.Agents[:i], rvo.Agents[i+1:]...)
+			return true
+		}
+	}
+
+	return false
+}
+
 // GetAgentNoByID : Get Agent No. by Agent ID
 func (rvo *RVOSimulator) GetAgentNoByID(id int) int {
 	for i := 0; i < rvo.GetNumAgents(); i++ {
