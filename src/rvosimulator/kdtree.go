@@ -352,6 +352,9 @@ func (kt *KdTree) DeleteObstacleTree(node *ObstacleTreeNode) {
 
 // QueryAgentTreeRecursive
 func (kt *KdTree) QueryAgentTreeRecursive(agent *Agent, rangeSq float64, node int) {
+	if len(kt.AgentTree) <= node {
+		return
+	}
 	if kt.AgentTree[node].End-kt.AgentTree[node].Begin <= MAX_LEAF_SIZE {
 		for i := kt.AgentTree[node].Begin; i < kt.AgentTree[node].End; i++ {
 			agent.InsertAgentNeighbor(kt.Agents[i], rangeSq)
